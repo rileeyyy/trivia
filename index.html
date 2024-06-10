@@ -1,0 +1,110 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trivia game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: helvetica;
+        }
+
+        .question-answer {
+            display: none;
+        }
+        .silly-area {
+            background-color: #1c1c1c;
+       }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>trivia game</h1>
+         <h3>made by<a href="https://rileeyyy.github.io"> riley</a></h3>
+        <button id="startButton" class="btn btn-primary">start</button>
+        <br>
+        <h1>-------------------------------------------------------------------</h1>
+    </div>
+    <div id="questionContainer" class="mt-4 text-center silly-area">
+        <h3 id="question"></h3>
+        <h4 id="timer"></h4>
+        <div id="answer" class="question-answer mt-3"></div>
+    </div>
+</div>
+<script>
+    const questions = [
+        { question: "question 1: Who was the main character in TSB or Hatchet?", answer: "Cole or Brian" },
+        { question: "question 2: What was the setting in TSB or Hatchet?", answer: "Alaska or Canada" },
+        { question: "question 3: Specific location of a place, such as an address.", answer: "absolute location" },
+        { question: "question 4: Humans affecting the environment.", answer: "HEI or Human Environment Interaction" },
+        { question: "question 5: Which direction does latitude go?", answer: "left and right" },
+        { question: "question 6: Which direction does longitude go?", answer: "up and down" },
+        { question: "question 7: Who were the 3 main characters in Refugee?", answer: "Josef, Isabel and Mahmoud" },
+        { question: "question 8: Whose character's country was in a civil war in Refugee?", answer: "Syria." },
+        { question: "question 9: Whose story took place in 1939?", answer: "Josef" },
+        { question: "question 10: Whose story took place the closest to our time?", answer: "Mahmoud" },
+        { question: "question 11: Who eventually ended up in the USA?", answer: "Isabel" },
+        { question: "question 12: What country was Mahmoud in when he was in the immigration center?", answer: "Hungary" },
+        { question: "question 13: Back in 1939, what type of people were not welcome in Germany?", answer: "Jewish people." },
+        { question: "question 14: What structure did ancient Mesopotamians use as temples?", answer: "Ziggurats." },
+        { question: "question 15: The two rivers where Mesopotamia was between were..?", answer: "Tigris and Euphrates river" },
+        { question: "question 16: What plant did Egyptians use as paper?", answer: "Papyrus." },
+        { question: "question 17: Pyramids were what?", answer: "Tombs." },
+        { question: "question 18: What stone helped people decipher hieroglyphics?", answer: "Rosetta Stone." },
+        { question: "question 19: What were the 3 types of Greek columns?", answer: "Doric, Ionic and Corinthian" },
+        { question: "question 20: What was the Greek god of lightning?", answer: "Zeus" },
+        { question: "question 21: True or False, was Greece a country at the time?", answer: "False, Modern-Day Greece was multiple city states." },
+        { question: "question 22: What city-state in Greece did The Fire of Ares take place in?", answer: "Sparta." },
+        { question: "question 23: Who was the main character in The Fire of Ares?", answer: "Lysander." },
+        { question: "question 24: Who was the first emperor of Rome?", answer: "Octavian or Augustus" },
+        { question: "question 25: What arena did Gladiators fight in?", answer: "The Colosseum" },
+        { question: "question 26: Who is the crippled spartan that helps Lysander?", answer: "Orpheus." },
+        { question: "question 27: Mixup time! Who is the sun god in ancient egypt?", answer: "Ra." },
+        { question: "question 28: What is an exaggeration?", answer: "Hyperbole" },
+        { question: "question 29: What is a sound word?", answer: "Onomatopoeia" },
+        { question: "question 30: Thanks for playing! Now, what's 2+2?", answer: "4." },
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function displayQuestion() {
+        const questionElement = document.getElementById('question');
+        const answerElement = document.getElementById('answer');
+        const timerElement = document.getElementById('timer');
+        questionElement.textContent = questions[currentQuestionIndex].question;
+        answerElement.textContent = '';
+        answerElement.style.display = 'none';
+        timerElement.textContent = 'time left: 20';
+
+        let timeLeft = 20;
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = `time left: ${timeLeft}`;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                answerElement.textContent = `answer: ${questions[currentQuestionIndex].answer}`;
+                answerElement.style.display = 'block';
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    setTimeout(displayQuestion, 5000); 
+                } else {
+                    questionElement.textContent = 'game over!';
+                    answerElement.style.display = 'none';
+                    timerElement.textContent = '';
+                }
+            }
+        }, 1000);
+    }
+
+    document.getElementById('startButton').addEventListener('click', () => {
+        const startButton = document.getElementById('startButton');
+        startButton.style.display = 'none';
+        displayQuestion();
+    });
+</script>
+</body>
+</html>
