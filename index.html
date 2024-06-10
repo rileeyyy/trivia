@@ -44,7 +44,7 @@
         { question: "question 5: Which direction does latitude go?", answer: "left and right" },
         { question: "question 6: Which direction does longitude go?", answer: "up and down" },
         { question: "question 7: Who were the 3 main characters in Refugee?", answer: "Josef, Isabel and Mahmoud" },
-        { question: "question 8: Whose character's country was in a civil war in Refugee?", answer: "Syria." },
+        { question: "question 8: Whose character's country was in a civil war in Refugee?", answer: "Mahmoud" },
         { question: "question 9: Whose story took place in 1939?", answer: "Josef" },
         { question: "question 10: Whose story took place the closest to our time?", answer: "Mahmoud" },
         { question: "question 11: Who eventually ended up in the USA?", answer: "Isabel" },
@@ -78,9 +78,9 @@
         questionElement.textContent = questions[currentQuestionIndex].question;
         answerElement.textContent = '';
         answerElement.style.display = 'none';
-        timerElement.textContent = 'time left: 20';
+        timerElement.textContent = 'time left: 30';
 
-        let timeLeft = 20;
+        let timeLeft = 30;
         const countdown = setInterval(() => {
             timeLeft--;
             timerElement.textContent = `time left: ${timeLeft}`;
